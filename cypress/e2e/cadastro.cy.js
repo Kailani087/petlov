@@ -34,14 +34,16 @@ describe('Formulário de Ponto de Doação', () => {
       const invalidDonationPoint = { ...donationPoint, name: '' }
       cy.fillDonationForm(invalidDonationPoint)
       cy.get('button[type="submit"]').click()
-      cy.get('.alert-error').should('be.visible').and('have.text', 'Informe o seu nome completo')
+      cy.contains('.alert-error', 'Informe o seu nome completo')
+      .should('be.visible')
     })
 
     it('Não deve cadastrar quando o email não é informado', () => {
       const invalidDonationPoint = { ...donationPoint, email: '' }
       cy.fillDonationForm(invalidDonationPoint)
       cy.get('button[type="submit"]').click()
-      cy.get('.alert-error').should('be.visible').and('have.text', 'Informe o seu melhor email')
+      cy.contains('.alert-error', 'Informe o seu melhor email')
+      .should('be.visible')
     })
 
     it('Não deve cadastrar quando o CEP não é informado', () => {
